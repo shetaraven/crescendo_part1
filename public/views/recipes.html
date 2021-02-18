@@ -1,122 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Recipes</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="scss/recipes.css">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Recipes</title>
 </head>
 
-<style type="text/css">
-	body{
-		margin: 0;
-	}
-	.recipes{
-	    background: #dcdcdc;
-    	min-height: 100vh;
-	}
-	.recipes__banner{
-		background: url(../img/recipe_banner.jpg)center center;
-	    min-height: 45vh;
-	    background-size: cover;
-	    position: relative;
-	}
-		.recipes__banner .opacity_div{
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0,0,0,.5);
-		}
-			.recipes__banner .opacity_div span{
-				position: absolute;
-			    color: #fff;
-			    top: 50%;
-			    left: 50%;
-			    transform: translate(-50%,-50%);
-			    font-size: 25pt;
-			    font-family: monospace;
-			    font-weight: 700;
-			    text-transform: uppercase;
-			}
-
-	#recipes_list_container a{
-		color: #000;
-	}
-	.recipes__list{
-		width: 70%;
-		margin: auto;
-    	padding: 50px 0;
-	}
-		.recipes__list ul{
-			padding: 0;
-			width: 100%;
-			box-sizing: border-box;
-			display: inline-table;
-		}
-		.recipes__item{
-			width: calc(33.333%);
-			box-sizing: border-box;
-			list-style: none;
-			display: inline-block;
-			padding: 10px;
-		}
-		.recipes__item__container{
-			padding: 10px;
-			border: solid 3px #fff;
-			box-shadow: 0 0 5px #d3d3d3; 
-			background: #fff;
-			cursor: pointer;
-			transition: all ease-in-out .3s;
-			position: relative;
-			top: 0;
-		}
-		.recipes__item__container:hover{
-			top: -10px;
-			box-shadow: 0 5px 5px #d3d3d3;
-		}
-		.recipes__item__image{
-			position: relative;
-		}
-			.recipes__item__image img{
-				width: 100%;
-				height: 30vh;
-				object-fit: cover;
-			}
-		.recipes__item__title{
-			padding: 20px 20px 10px;
-		    font-size: 13pt;
-		    font-family: monospace;
-		    font-weight: 700;
-		}
-		.recipes__item__desc{
-			padding: 0 20px;
-		    font-size: 10pt;
-		    font-family: monospace;
-		    height: 30px;
-		    overflow: hidden; 
-		}
-		.recipes__item__etc{
-			width: 100%;
-			list-style: none;
-			display: inline-flex!important;
-			margin: 30px 0 20px;
-		}
-			.recipes__item__etc li{
-			    width: 100%;
-			    font-family: monospace;
-			    text-align: center;
-			    font-size: 9pt;
-			    border-right: solid 1px #ccc;
-			}
-			.recipes__item__etc li:last-child{
-				border: none;
-				color: #008000;
-			}
-
-</style>
 <body>
 	<div class="recipes">
 
@@ -136,27 +28,4 @@
 
 </html>
 
-<script type="text/javascript">
-	const xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://localhost:3001/recipes');
-	xhr.responseType = 'json';
-	xhr.onload = function(e) {
-		if (this.status == 200) {
-    		var appendhtml = '';
-    		for (var i = 0; i < this.response.length; i++) {
-    			appendhtml += '<a href="/views/recipe_page.html?uid='+this.response[i].uuid+'"><li class="recipes__item" data-uid="'+this.response[i].uuid+'">'
-				appendhtml += '<div class="recipes__item__container">'
-				appendhtml += '<div class="recipes__item__image">'
-				appendhtml += '<img src="'+this.response[i].images.medium+'"></div>'
-				appendhtml += '<div class="recipes__item__title">'+this.response[i].title+'</div>'
-				appendhtml += '<div class="recipes__item__desc">'+this.response[i].description+'</div>'
-				appendhtml += '<ul class="recipes__item__etc">'
-				appendhtml += '<li title="Preparation Time"><i class="fa fa-clock-o"></i> '+this.response[i].prepTime+'</li>'
-				appendhtml += '<li title="Servings"><i class="fa fa-spoon"></i> '+this.response[i].servings+'</li>'
-				appendhtml += '<li title="Cooking Time"><i class="fa fa-clock-o"></i> '+this.response[i].cookTime+'</li></ul></div></li></a>'
-    		}
-    		document.getElementById("recipes_list_container").innerHTML += appendhtml;
-  		}
-	};
-xhr.send();
-</script>
+<script src="js/recipes.js"></script>
